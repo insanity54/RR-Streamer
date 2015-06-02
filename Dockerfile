@@ -2,12 +2,12 @@ MAINTAINER Chris Grimmett <chris@grimtech.net>
 
 FROM ubuntu:precise
 
-ADD . /rr-streamer
+ADD . /ezstream
 
 RUN apt-get update && apt-get install -y \
-		gcc libc6-dev make \
-		--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+    libsox libsox-fmt-all ezstream lame \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 
-ENTRYPOINT ["/rr-streamer/entry.sh"]
+ENTRYPOINT ["/ezstream/entry.sh"]
