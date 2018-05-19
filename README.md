@@ -5,7 +5,7 @@ stream to radioreference or wunderground or any other icecast server using headl
 
 ## usage
 
-use ubuntu of some sort. (12.04 tested)
+use linux of some sort. (ubuntu 12.04 tested)
 
 run setup.sh
 
@@ -20,3 +20,8 @@ you should be streaming now. If you have problems, check these logs:
 * /var/log/syslog
 * /var/log/upstart/liquidsoap.log
 
+
+### redundancy using Icecast fallbacks
+
+https://serverfault.com/questions/549192/i-have-an-issue-with-fallback-in-an-icecast-setup
+http://sourcefabric.booktype.pro/airtime-25-for-broadcasters/icecast-handover/
