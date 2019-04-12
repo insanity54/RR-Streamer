@@ -7,6 +7,7 @@ stream to radioreference or wunderground or any other icecast server using headl
   * liquidsoap
   * liquidsoap-plugin-pulseaudio
   * liquidsoap-plugin-icecast
+  * liquidsoap-plugin-lame
 
 ## usage
 
