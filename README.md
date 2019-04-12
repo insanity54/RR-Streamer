@@ -2,6 +2,10 @@
 
 stream to radioreference or wunderground or any other icecast server using headless linux. I'm using this to stream Spokane weather radio (NOAA WXL86) to wunderground.com. (http://grimtech.net/noaa-wxl86-radio-stream/)
 
+## dependencies
+
+  * liquidsoap
+  * liquidsoap-plugin-pulseaudio
 
 ## usage
 
