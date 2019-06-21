@@ -1,0 +1,10 @@
+---
+
+stream_host: 45.32.231.107
+stream_port: 8000
+stream_password: hackme
+stream_mount: /KE7NWL/Spokane.mp3
+stream_title: WXL86 In Spokane
+stream_description: NOAA Weather Radio - WXL86 In Spokane
+stream_genre: Weather
+stream_publicity: true

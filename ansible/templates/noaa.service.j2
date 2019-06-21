@@ -1,0 +1,9 @@
+[Unit]
+Description=Stream NOAA Weather Radio to Icecast
+
+[Service]
+User={{ ansible_ssh_user }}
+Type=simple
+WorkingDirectory=/opt/noaa
+ExecStart=liquidsoap /opt/noaa/noaa-stream.liq
+

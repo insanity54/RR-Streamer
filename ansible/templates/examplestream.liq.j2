@@ -1,0 +1,35 @@
+# logs
+set("log.stdout", true)
+
+
+# mic input
+mic = input.pulseaudio(id = "Weather Radio via Microphone Input")
+
+
+#mic = visu.volume(mic) # won't work if calling with upstart
+#out(mic) # output to speakers (uncomment for testing)
+
+
+# encoding
+audio = %mp3.cbr(
+  stereo = false,
+  samplerate = 22050,
+  bitrate = 16
+)
+
+
+# stream to wunderground
+output.icecast(audio,
+  protocol = "http",
+  host = "{{ stream_host }}",
+  port = {{ stream_port }},
+  password = "{{ stream_password }}",
+  mount = "{{ stream_mount }}",
+  name = "{{ stream_title }}",
+  description = "{{ stream_description }}",
+  genre = "{{ stream_genre }}",
+  url = "{{ stream_url }}",
+  public = {{ stream_publicity }},
+  icy_metadata = "false",
+  mksafe(mic)
+)

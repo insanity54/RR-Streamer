@@ -1,0 +1,13 @@
+---
+
+
+  - name: start noaa
+    systemd:
+      name: noaa
+      state: started
+
+  - name: restart noaa
+    systemd:
+      name: noaa
+      state: restarted
+      daemon_reload: yes
