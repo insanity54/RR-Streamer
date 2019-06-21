@@ -1,30 +1,10 @@
 # rr-streamer
 
-stream to radioreference or wunderground or any other icecast server using headless linux. I'm using this to stream Spokane weather radio (NOAA WXL86) to wunderground.com. (http://grimtech.net/noaa-wxl86-radio-stream/)
+## Usage
 
-## dependencies
+Edit `inventory` file with ssh connection details of the Ubuntu PC which will become the streamer.
 
-  * liquidsoap
-  * liquidsoap-plugin-pulseaudio
-  * liquidsoap-plugin-icecast
-  * liquidsoap-plugin-lame
-
-## usage
-
-use linux of some sort. (ubuntu 12.04 tested)
-
-run setup.sh
-
-put your stream's configuration in `/opt/noaa/stream.liq`
-
-put the liquidsoap.conf file in /etc/init
-
-run `service liquidsoap start`
-
-you should be streaming now. If you have problems, check these logs:
-
-* /var/log/syslog
-* /var/log/upstart/liquidsoap.log
+Execute `ansible-playbook -i ./inventory --ask-pass --ask-sudo-pass ./setup.yml` and the PC will be provisioned as a rr-streamer PC.
 
 
 ### Future plans: redundancy using Icecast fallbacks

@@ -1,0 +1,48 @@
+---
+
+  - name: ensure dependencies are installed
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - liquidsoap
+      - liquidsoap-plugin-pulseaudio
+      - liquidsoap-plugin-icecast
+      - liquidsoap-plugin-lame
+    become: yes
+    notify:
+      - restart noaa
+
+  - name: create Stream config directory
+    file:
+      path: /opt/noaa
+      state: directory
+    become: yes
+    notify:
+      - restart noaa
+
+  - name: Touch Liquidsoap log file
+    file:
+      path: /var/log/liquidsoap/noaa-stream.log
+      state: touch
+      mode: 0777
+    become: yes
+    notify:
+      - restart noaa
+
+  - name: create Liquidsoap stream config
+    template:
+      src: templates/examplestream.liq.j2
+      dest: /opt/noaa/noaa-stream.liq
+    become: yes
+    notify:
+      - restart noaa
+
+
+  - name: create systemd service
+    template:
+      src: templates/noaa.service.j2
+      dest: /etc/systemd/system/noaa.service
+    become: yes
+    notify:
+      - restart noaa

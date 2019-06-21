@@ -1,0 +1,9 @@
+---
+
+  - name: Create Liquidsoap based Radio Streaming Source
+    hosts: noaa
+    vars_files:
+      - vars/main.yml
+      - vars/secret.yml
+    roles:
+      - noaa-role

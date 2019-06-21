@@ -5,9 +5,11 @@
     systemd:
       name: noaa
       state: started
+    become: true
 
   - name: restart noaa
     systemd:
       name: noaa
       state: restarted
       daemon_reload: yes
+    become: true

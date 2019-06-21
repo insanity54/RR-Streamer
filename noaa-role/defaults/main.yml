@@ -7,4 +7,5 @@ stream_mount: /KE7NWL/Spokane.mp3
 stream_title: WXL86 In Spokane
 stream_description: NOAA Weather Radio - WXL86 In Spokane
 stream_genre: Weather
-stream_publicity: true
+stream_publicity: "true"
+stream_url: http://45.32.231.107:8000/KE7NWL/Spokane.mp3

@@ -1,9 +1,9 @@
 # logs
-set("log.stdout", true)
+#set("log.stdout", true)
 
 
 # mic input
-mic = input.pulseaudio(id = "Weather Radio via Microphone Input")
+mic = input.alsa(id = "Weather Radio via Microphone Input")
 
 
 #mic = visu.volume(mic) # won't work if calling with upstart

@@ -1,0 +1,9 @@
+---
+
+  all:
+    hosts:
+      noaa:
+        ansible_host: 10.42.0.19
+        ansible_port: 22
+        ansible_user: wunder
+        ansible_ssh_common_args: '-o IdentitiesOnly=yes'
