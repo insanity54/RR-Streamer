@@ -1,15 +1,14 @@
 ---
 
-
   - name: start noaa
-    systemd:
+    service:
       name: noaa
       state: started
     become: true
 
   - name: restart noaa
-    systemd:
+    service:
       name: noaa
       state: restarted
-      daemon_reload: yes
+      enabled: yes
     become: true

@@ -3,7 +3,7 @@
   all:
     hosts:
       noaa:
-        ansible_host: 10.42.0.19
+        ansible_host: 10.42.1.187
         ansible_port: 22
-        ansible_user: wunder
+        ansible_user: loki
         ansible_ssh_common_args: '-o IdentitiesOnly=yes'

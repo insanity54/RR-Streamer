@@ -1,6 +1,6 @@
 ---
 
-  - name: Create Liquidsoap based Radio Streaming Source
+  - name: Create Internet Radio Streaming Source
     hosts: noaa
     vars_files:
       - vars/main.yml

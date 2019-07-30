@@ -5,4 +5,8 @@ Description=Stream NOAA Weather Radio to Icecast
 User={{ ansible_ssh_user }}
 Type=simple
 WorkingDirectory=/opt/noaa
+{% if ansible_run_tags.liquidsoap %}
 ExecStart=/usr/bin/liquidsoap /opt/noaa/noaa-stream.liq
+{% elif ansible_run_tags.ffmpeg %}
+ExecStart=/usr/bin/ffmpeg -f alsa -i {{ ffmpeg_input }} -acodec libmp3lame -ab 32k -ac 1 -content_type audio/mpeg -f mp3 icecast://{{ stream_source }}:{{ stream_password }}@{{ stream_hostname }}:{{ stream_port }}{{ stream_mount }}
+{% endif %}

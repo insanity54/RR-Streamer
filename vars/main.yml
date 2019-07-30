@@ -1,2 +1,4 @@
 ---
 # vars file for rr-streamer
+
+stream_hostname: 45.32.231.107

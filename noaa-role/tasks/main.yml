@@ -1,25 +1,43 @@
 ---
 
-  - name: ensure dependencies are installed
+  - name: ensure liquidsoap is installed
     apt:
-      name: "{{ item }}"
+      name: ['liquidsoap', 'liquidsoap-plugin-pulseaudio', 'liquidsoap-plugin-icecast', 'liquidsoap-plugin-lame', 'liquidsoap-plugin-alsa']
       state: present
-    with_items:
-      - liquidsoap
-      - liquidsoap-plugin-pulseaudio
-      - liquidsoap-plugin-icecast
-      - liquidsoap-plugin-lame
     become: yes
     notify:
       - restart noaa
+    tags:
+      - liquidsoap
 
-  - name: create Stream config directory
+  - name: Add ffmpeg PPA repository (Needed for Ubuntu 14.04 or earlier)
+    apt_repository:
+      repo: ppa:mc3man/trusty-media
+    become: yes
+    notify:
+      - restart noaa
+    tags:
+      - ffmpeg
+    when: ansible_distribution == "Ubuntu" and ansible_distribution_release == 'trusty'
+
+  - name: ensure ffmpeg is installed (apt)
+    apt:
+      name: ffmpeg
+    become: yes
+    notify:
+      - restart noaa
+    tags:
+      - ffmpeg
+
+  - name: create config directory
     file:
       path: /opt/noaa
       state: directory
     become: yes
     notify:
       - restart noaa
+    tags:
+      - liquidsoap
 
   - name: Touch Liquidsoap log file
     file:
@@ -29,6 +47,8 @@
     become: yes
     notify:
       - restart noaa
+    tags:
+      - liquidsoap
 
   - name: create Liquidsoap stream config
     template:
@@ -37,7 +57,8 @@
     become: yes
     notify:
       - restart noaa
-
+    tags:
+      - liquidsoap
 
   - name: create systemd service
     template:
@@ -46,3 +67,15 @@
     become: yes
     notify:
       - restart noaa
+    tags:
+      - systemd
+
+  - name: create upstart service
+    template:
+      src: templates/noaa.conf.j2
+      dest: /etc/init/noaa.conf
+    become: yes
+    notify:
+      - restart noaa  
+    tags:
+      - upstart

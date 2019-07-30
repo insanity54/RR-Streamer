@@ -1,0 +1,17 @@
+# description "start and stop the noaa"
+
+start on runlevel [2345]
+stop on runlevel [^2345]
+
+console log
+setuid {{ ansible_ssh_user }}
+setgid {{ ansible_ssh_user }}
+
+respawn
+respawn limit 20 5
+
+{% if 'liquidsoap' in ansible_run_tags %}
+exec /usr/bin/liquidsoap /opt/noaa/noaa-stream.liq
+{% elif 'ffmpeg' in ansible_run_tags %}
+exec /usr/bin/ffmpeg -f alsa -i {{ ffmpeg_input }} -acodec libmp3lame -ab 32k -ac 1 -content_type audio/mpeg -f mp3 icecast://{{ stream_source }}:{{ stream_password }}@{{ stream_hostname }}:{{ stream_port }}{{ stream_mount }}
+{% endif %}
