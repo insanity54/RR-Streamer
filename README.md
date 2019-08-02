@@ -1,5 +1,7 @@
 # rr-streamer
 
+Provision a host as an Icecast source. Choose between ffmpeg or liquidsoap, upstart or systemd.
+
 ## Usage
 
 Edit `inventory` file with ssh connection details of the Ubuntu PC which will become the streamer.
